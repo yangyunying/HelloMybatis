@@ -31,6 +31,17 @@ public class TestMybatis {
         String statement = "com.chapter.mapping.userMapper.getUser";//映射sql的标识字符串
         //执行查询返回一个唯一user对象的sql
         User user = session.selectOne(statement, 1);
-        System.out.println(user);
+        System.out.println(user.toString());
+        session.commit();
+        session.close();
+        
+        SqlSession session2 = sessionFactory.openSession();
+        String statement2 = "com.chapter.mapping.userMapper.getUser";//映射sql的标识字符串
+        //执行查询返回一个唯一user对象的sql
+        User user2 = session2.selectOne(statement2, 1);
+        System.out.println(user2.toString());
+        session2.commit();
+        session2.close();
+
     }
 }

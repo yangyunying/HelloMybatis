@@ -4,16 +4,20 @@
 例如namespace="com.chapter.mapping.userMapper"就是com.chapter.mapping(包名)+userMapper(userMapper.xml文件去除后缀)
  -->
 <mapper namespace="com.chapter.mapping.userMapper">
+	<!-- 开启二级缓存 -->
+	<cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+	
     <!-- 在select标签中编写查询的SQL语句， 设置select标签的id属性为getUser，id属性值必须是唯一的，不能够重复
-    使用parameterType属性指明查询时使用的参数类型，resultType属性指明查询返回的结果集类型
-    resultType="com.chapter.domain.User"就表示将查询结果封装成一个User类的对象返回
-    User类就是users表所对应的实体类
+    	使用parameterType属性指明查询时使用的参数类型，resultType属性指明查询返回的结果集类型
+    	resultType="com.chapter.domain.User"就表示将查询结果封装成一个User类的对象返回
+    	User类就是users表所对应的实体类
     -->
-    <!-- 
-        根据id查询得到一个user对象
-     -->
-    <select id="getUser" parameterType="int" 
+    
+    <!-- 根据id查询得到一个user对象--><!--可以通过设置useCache来规定这个sql是否开启缓存，ture是开启，false是关闭-->
+    <select id="getUser" parameterType="int" useCache="true"
         resultType="com.chapter.domain.User">
         select * from users where id=#{id}
     </select>
+    
+    
 </mapper>

@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<settings>
+        <setting name="cacheEnabled" value="true"/>
+        
+        <!-- 为什么我加了<settings><setting name="logImpl" value="LOG4J"/></settings>
+        	以后 启动tomcat一直报  “The setting logImpl is not known.  Make sure you spelled it correctly (case sensitive).”的错
+			你的mybatis.jar不对,要用mybatis-3.2.3 -->
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>
+    
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC" />
             <!-- 配置数据库连接信息 -->
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver" />
-                <property name="url" value="jdbc:mysql://localhost:3306/yqy" />
+               	<property name="url" value="jdbc:mysql://localhost:3306/yqy" /> 
                 <property name="username" value="root" />
                 <property name="password" value="admin" />
             </dataSource>

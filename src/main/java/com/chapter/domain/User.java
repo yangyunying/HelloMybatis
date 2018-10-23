@@ -1,12 +1,15 @@
 package com.chapter.domain;
 
+import java.io.Serializable;
+
 /**
  * @author gacl
  * users表所对应的实体类
  */
-public class User {
-
-    //实体类的属性和表的字段名称一一对应
+public class User implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	//实体类的属性和表的字段名称一一对应
     private int id;
     private String name;
     private int age;
